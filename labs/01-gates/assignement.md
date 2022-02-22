@@ -34,18 +34,27 @@ end architecture dataflow;
 
  architecture dataflow of gates is
 begin
-    d1_o  <= (x_i and y_i) or (x_i and z_i);
-    d2_o  <= x_i and (y_i or z_i);
-    d3_o  <= (x_i or y_i) and (x_i or z_i);
-    d4_o  <= x_i or (y_i and z_i);
+    dis1 <= (a_i and b_i) or (a_i and c_i);
+    dis2 <= a_i and (b_i or c_i);
    
 end architecture dataflow;
 
 1. Screenshot with simulated time waveforms. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-             ![screenshot](images/epw1.png)
 
-   
+    ![screen](images/epw1.png)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   dist.law    ![screen](images/epw2.png)
