@@ -43,7 +43,7 @@ end architecture dataflow;
 
 1. Screenshot with simulated time waveforms. Always display all inputs and outputs (display the inputs at the top of the image, the outputs below them) at the appropriate time scale!
 
-             ![screen](images/epw1.png)
+             ![screenshot](images/epw1.png)
 
    
 
