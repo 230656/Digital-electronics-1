@@ -55,7 +55,12 @@
 
 
 
-  ![your figure](images/chyba.png)
+
+
+
+  ![zly vysledok](images/chyba.png)
+
+
 
 
 
