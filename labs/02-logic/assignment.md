@@ -54,7 +54,7 @@ Lab 2: Filip Seč
 
 2.  Text console screenshot during your simulation, including reports.
 
-    ![your figure](fail.png)
+    ![your figure](images/chyba.png)
 
 3.  Link to your public EDA Playground example:
 
