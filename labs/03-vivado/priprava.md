@@ -34,7 +34,7 @@
 ![Led vnitrne](images/Ledky_Zapojeni.png)
 
 <a name="switch"></a>
-## Zapojení switchů
+## Zapojení switch
 ![Switch piny](images/Switche.png)
 ![Switch vnitrne](images/Switche_Zapojeni.png)
 ![Switch vnitrne](images/Switch2.png)
