@@ -1,4 +1,4 @@
-# Lab 3: PETR KLÍMA
+# Lab 3: Filip Seč
 
 ### Three-bit wide 4-to-1 multiplexer
 
