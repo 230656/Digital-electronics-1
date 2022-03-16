@@ -1,0 +1,3 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "D:/Documents/flip flops/flip flops.srcs/sim_1/new/tb_tt_rst.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_tt_rst'
+INFO: [VRFC 10-3107] analyzing entity 'tb_ff_rst'
