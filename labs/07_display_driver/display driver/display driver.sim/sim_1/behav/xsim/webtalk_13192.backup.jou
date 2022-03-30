@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Wed Mar 30 10:16:23 2022
+# Process ID: 13192
+# Current directory: D:/Documents/xsecfi00/labs/Digital-electronics-1/labs/07_display_driver/display driver/display driver.sim/sim_1/behav/xsim
+# Command line: wbtcv.exe -mode batch -source D:/Documents/xsecfi00/labs/Digital-electronics-1/labs/07_display_driver/display driver/display driver.sim/sim_1/behav/xsim/xsim.dir/top_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: D:/Documents/xsecfi00/labs/Digital-electronics-1/labs/07_display_driver/display driver/display driver.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: D:/Documents/xsecfi00/labs/Digital-electronics-1/labs/07_display_driver/display driver/display driver.sim/sim_1/behav/xsim\webtalk.jou
+#-----------------------------------------------------------
+source D:/Documents/xsecfi00/labs/Digital-electronics-1/labs/07_display_driver/display -notrace
