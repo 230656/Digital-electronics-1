@@ -1,0 +1,186 @@
+--Libraries that are used
+   -- library ieee;
+    use ieee.std_logic_1164.all; -- use stand logic 
+    use ieee.std_logic_arith.all;
+    use ieee.std_logic_unsigned.all;
+
+        --library MACHXO3;
+        --use MACHXO3.all;
+
+        --Define entity for the counter
+        entity testCC2510 is
+            --define inputs and outputs
+            port(clkin: in std_logic; --define clkin 
+                --reset: in std_logic; --define reset
+                --SW4: in std_logic; 
+                LED: out std_logic_vector(7 downto 0); --define number of bits in LED
+                com: out std_logic; --define common pin
+                D2_out: out std_logic_vector(6 downto 0); --define digital 2 of seven segment display
+                D1_out: out std_logic_vector(6 downto 0); --define digital 1 of seven segment display
+                D0_out: out std_logic_vector(6 downto 0); --define digital 0 of seven segment display
+                DP1_out: out std_logic;
+                DP2_out: out std_logic;
+                LED_out: out std_logic_vector(7 downto 0)); --define LED outputs
+
+        --  define the pin connections
+        --Connect the external pins for the LCD Segment, common pin, SW4, reset,and Clock input
+            attribute loc:string;
+            attribute loc of clkin: signal is "C8"; --connect clock input to C8
+            attribute loc of D0_out: signal is "R13,T14,T12,R11,T11,M11,N10"; --connect pins of digital 0 output
+            attribute loc of D1_out: signal is "R10,P10,T10,R9,T9,N9,M8";--connect pins of digital 1 output
+            attribute loc of D2_out: signal is "M6,L8,T8,P8,R7,R8,T7"; --connect pins of digital 2 output
+            attribute loc of com: signal is "P7"; --connect common pin to pin P7
+            --attribute loc of reset: signal is "G2";--connect reset to pin G2
+            --attribute loc of SW4: signal is "N1"; 
+            attribute loc of DP1_out: signal is "P9";--connect pins P9 for DP1 output
+            attribute loc of DP2_out: signal is "P11"; -- connect pins P11 for DP2 out put
+            attribute loc of LED_out: signal is "F3,D3,G3,C2,F5,E3,B1,C1"; --connect LED output to pins F3,D3,G3,C2,F5,E3,B1,C1
+        end;
+
+        --Define the architecture for the counter entity
+
+        architecture arch_testCC2510 of testCC2510 is
+
+            component SevenSeg --In the architecture we use a component to convert an integer to a seven segment Driver. (each digital in the LCD)
+                --define signal in architecture
+                port(LEDin: in integer;
+                    SevSegout: out std_logic_vector);
+            end component;
+            signal ref_clk: std_logic; -- define signal of reference clock
+            signal ref_counter: integer range 0 to 367; -- ref_count is the frequency count in integer form.
+            signal display_0: integer range 0 to 9;
+            signal display_1: integer range 0 to 9;
+
+            signal clkreg : std_logic_vector(31 downto 0); --clkreg is a counter register that is used to slow down the input clock rate.
+            signal c_clk: std_logic; 
+            signal dig2: std_logic_vector(6 downto 0):="1111111"; --set digital 2 as blank as not needed
+            signal dig1: std_logic_vector(6 downto 0); --dig 1 is the ten BCD digit
+            signal dig0: std_logic_vector(6 downto 0); --dig0 is the unit BCD digit
+            signal DP1: std_logic:='1'; -- set DP1 as logical 1
+            signal DP2: std_logic:='1'; ---- set DP2 as logical 1
+            signal count0: integer range 0 to 9; --count0 is the units in the count process in integer form
+            signal count1: integer range 0 to 9; --count1 is the tens in the count process in integer form
+            signal oscpin: std_logic; --oscpin is used the com pin in the LCD opposite to the digit segments
+
+        -- Begin architecture once everything is defined. 
+        begin
+
+            clk1:process(clkin) --clkin is in the sensitivity list every time clkin changes the process is activated.
+                begin
+                 if (clkin'event and clkin = '1') then      --The if statement is used to see if clkin has a positive clock edge    
+                    clkreg <= clkreg+X"00000001"; --On the positive clock edge clock register is incremented by 1.
+                end if;
+                clk_reference <= clkreg(14); -- Pick frequency of  reference clock to make frequency of 183Hz
+                c_clk <= clkreg(17); --Slower clock rates can then be selected c_clk is used for the clock rate of 45.776Hz for the counter.
+                oscpin <= clkreg(15); --oscpin is the modulation rate for the LCD
+
+            end process clk1; --end process for clock 1
+
+            --Modulate the LCD segments (LCD are driven by ac signals) 
+
+            lcdmod:process(oscpin)
+
+                begin
+
+                 if (oscpin='1') then
+                    D2_out<=dig2;
+                    D1_out<=dig1;
+                    D0_out<=dig0;
+                    DP1_out<=DP1;
+                    DP2_out<=DP2;
+                 else --When oscpin is low dig2, dig1, dig0,DP1 and DP2 set high.
+                    D2_out<= not dig2;
+                    D1_out<= not dig1;
+                    D0_out<= not dig0;
+                    DP1_out<= not DP1;
+                    DP2_out<= not DP2;
+                 end if;
+                    com<=oscpin;
+
+            end process;
+
+
+            p_counter: process (c_clk)
+            --Begin the process starts on the rising edge of the c_clk pulse
+            begin
+                    --counter clock starts counting at rising edge of c_clock
+                    if (ref_counter = 367) then
+                        count0 <=0;
+                        count1 <=0;
+                    else
+                    wait until rising_edge(c_clk);
+
+                    if ((count1=9) and (count0=9)) then
+                        count1<=0;
+                        count0<=0;
+                    elsif(count0=9) then
+                        count1<=count1+1;
+                        count0<=0;
+                    else
+                        count0<=count0+1;
+                    end if;
+                    end if;
+
+
+            end process p_counter;
+
+
+        -- Port map Seven segment display
+            DD0:SevenSeg port map(display_0,dig0); --Map count0 as the input and digital 0 as the out put
+            DD1:SevenSeg port map(display_1,dig1);--Map count0 as the input and digital 1 as the out put
+
+            clk2:process(ref_clk)
+
+                begin
+
+                    wait until rising_edge(ref_clk);
+
+                        if (ref_counter =366) then
+                            display_1 <= count1;
+                            display_0 <= count0;
+
+                        elseif (ref_counter = 367) then             
+                            ref_counter = 0;
+                        else                
+                            ref_counter = ref_counter +1;
+                        end if;
+
+            end process clk2;
+
+            LED_out <= "00000000";
+
+        end arch_testCC2510;
+
+        library ieee;
+        use ieee.std_logic_1164.all;
+        use ieee.std_logic_arith.all;
+        use ieee.std_logic_unsigned.all;
+
+        -- SevenSeg entity is used to drive the seven segment display
+
+        entity SevenSeg is
+            -- Define the entity for the seven segment display the input is LEDin
+            port(LEDin: integer range 0 to 9; 
+                SevSegout: out std_logic_vector(6 downto 0)); --The output is SevenSegout
+        end;
+        --Architecture for entity SevenSeg
+        architecture SevenSeg_arch of SevenSeg is
+        begin
+            process(LEDin) --Process as LED in its list
+            begin
+                Lab0:case LEDin is --use case statement to set the output for SevSegout
+                    when 0=>SevSegout<="0000001"; --set the SevSegout for number 0
+                    when 1=>SevSegout<="1001111";--set the SevSegout for number 1
+                    when 2=>SevSegout<="0010010";--set the SevSegout for number 2
+                    when 3=>SevSegout<="0000110";--set the SevSegout for number 3
+                    when 4=>SevSegout<="1001100";--set the SevSegout for number 4
+                    when 5=>SevSegout<="0100100";--set the SevSegout for number 5
+                    when 6=>SevSegout<="0100000";--set the SevSegout for number 6
+                    when 7=>SevSegout<="0001111";--set the SevSegout for number 7
+                    when 8=>SevSegout<="0000000";--set the SevSegout for number 8
+                    when 9=>SevSegout<="0000100";--set the SevSegout for number 9
+                end case Lab0;
+            end process;
+        end SevenSeg_arch;
+
+http://quitoart.blogspot.com/2017/07/vhdl-frequency-counter-square-wave.html
