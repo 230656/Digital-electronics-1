@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Mon Jun 13 12:26:50 2022
+# Process ID: 11600
+# Current directory: D:/Documents/xsecfi00/labs/Digital-electronics-1/labs/semester_project/semester_project/project_original/impl_1
+# Command line: vivado.exe -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
+# Log file: D:/Documents/xsecfi00/labs/Digital-electronics-1/labs/semester_project/semester_project/project_original/impl_1/top.vdi
+# Journal file: D:/Documents/xsecfi00/labs/Digital-electronics-1/labs/semester_project/semester_project/project_original/impl_1\vivado.jou
+#-----------------------------------------------------------
+source top.tcl -notrace
