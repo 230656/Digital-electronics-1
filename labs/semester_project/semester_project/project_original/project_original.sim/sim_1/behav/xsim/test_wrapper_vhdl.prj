@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../project_4.srcs/sources_1/new/pwm.vhd" \
+"../../../../project_4.srcs/sources_1/new/wrapper.vhd" \
+
+# Do not sort compile order
+nosort

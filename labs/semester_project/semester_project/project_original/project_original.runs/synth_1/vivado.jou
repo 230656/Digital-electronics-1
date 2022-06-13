@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sun Jun 12 22:18:42 2022
+# Process ID: 7076
+# Current directory: C:/Users/filip/OneDrive/Dokumenty/Github/Digital-electronics-1/labs/semester_project/semester_project/synth_1
+# Command line: vivado.exe -log pwm02.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pwm02.tcl
+# Log file: C:/Users/filip/OneDrive/Dokumenty/Github/Digital-electronics-1/labs/semester_project/semester_project/synth_1/pwm02.vds
+# Journal file: C:/Users/filip/OneDrive/Dokumenty/Github/Digital-electronics-1/labs/semester_project/semester_project/synth_1\vivado.jou
+#-----------------------------------------------------------
+source pwm02.tcl -notrace
