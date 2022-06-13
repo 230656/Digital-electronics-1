@@ -47,8 +47,8 @@ begin
          duty(1) => SW(1),
          duty(2) => SW(2),
          duty(3) => SW(3),
-          duty(4) => SW(4),
-          duty(5) => SW(5),
+         duty(4) => SW(4),
+         duty(5) => SW(5),
          duty(6) => SW(6),
          duty(7) => SW (7)
          );
