@@ -1,3 +1,21 @@
+# Generování PWM signálu s nastavitelnou střídou
+
+### Team members
+
+* Member Filip Seč
+
+
+### Table of contents
+
+* [Project objectives](#objectives)
+* [Hardware description](#hardware)
+* [VHDL modules description and simulations](#modules)
+* [TOP module description and simulations](#top)
+* [Video](#video)
+* [References](#references)
+
+<a name="objectives"></a>
+
 ## Project objectives
 
 Cieľom semestrálneho projektu je vytvorenie implementácie generátora PWM signálus s nastavitelnou střídou vo VHDL. Implementácia je splnená v nasledujúcich bodoch: 
@@ -11,8 +29,8 @@ Cieľom semestrálneho projektu je vytvorenie implementácie generátora PWM sig
 ## Popis Hardwaru
 
 ### Nexys A7-50
- ![your figure](images/nexys_a7.png)
-![your figure](images/.png)
+(images/nexys_a7.png)
+
 
 Artix-7 je optimalizovaný pre vysoko výkonnú logiku. Vďaka veľkej, vysokokapacitnej FPGA a kolekcii portov USB, Ethernet a ďalších portov môže Nexys A7 
 hostiť návrhy od úvodných kombinačných obvodov až po výkonné vstavané procesory. Niekoľko zabudovaných periférií vrátane akcelerometra, teplotného snímača, 
@@ -33,19 +51,29 @@ Vhodným postupným volením striedy vieme dostať rôzne typy signálov. V naš
 V princípe sa jedná o porovnávanie signálu s_cnt (počíta časové impulzy) so signálom duty, ktorý ak je väčší, tak sa nastaví na nulu.   
 
 ### Výsledok testbenchu
-![your figure](images/fotka1.png)                                       ![your figure](images/fotka2.png)
 
-![your figure](images/fotka3.png)
+(images/fotka1.png)                                       
+
+
+(images/fotka2.png)
+
+
+(images/fotka3.png)
 
 <a name="top"></a>
 
 ## Popis a simulácia modulov napísaných v jazyku VHDL
-V TOP module implementujeme inštanciu logickej funkcie. Prepojuje ostatné moduly s hardvérovými komponentami na doske Nexys A7-50T.  
+V TOP module implementujeme inštanciu logickej funkcie. Prepojuje ostatné moduly s hardvérovými komponentami na doske Nexys A7-50T. 
+(images/schematic.png)       
 
 <a name="video"></a>
 
 ## Video
+video z laboratorií
 https://youtu.be/qjhxOXKObTY
+
+video o popise funkcionality pwm 
+https://youtu.be/Ne4TMmDFinQ
 
 <a name="references"></a>
 
@@ -60,5 +88,15 @@ https://digilent.com/reference/programmable-logic/nexys-a7/reference-manual?redi
 
 3.Github:
 https://github.com/tomas-fryza/digital-electronics-1
+
+4.analogictips
+https://www.analogictips.com/pulse-width-modulation-pwm/
+
+5.youtube 
+https://www.youtube.com/watch?v=2XjqS1clY_E
+
+6.Science Direct
+https://www.sciencedirect.com/topics/engineering/pulse-width-modulation
+
 
 
