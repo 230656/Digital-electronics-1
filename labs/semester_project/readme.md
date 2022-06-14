@@ -29,7 +29,7 @@ Cieľom semestrálneho projektu je vytvorenie implementácie generátora PWM sig
 ## Popis Hardwaru
 
 ### Nexys A7-50
-(images/nexys_a7.png)
+![your figure](images/nexys_a7.png)
 
 
 Artix-7 je optimalizovaný pre vysoko výkonnú logiku. Vďaka veľkej, vysokokapacitnej FPGA a kolekcii portov USB, Ethernet a ďalších portov môže Nexys A7 
@@ -52,19 +52,18 @@ V princípe sa jedná o porovnávanie signálu s_cnt (počíta časové impulzy)
 
 ### Výsledok testbenchu
 
-(images/fotka1.png)                                       
+![your figure](images/fotka1.png)                                       
 
 
-(images/fotka2.png)
+![your figure](images/fotka2.png)
 
-
-(images/fotka3.png)
+![your figure](images/fotka3.png)
 
 <a name="top"></a>
 
 ## Popis a simulácia modulov napísaných v jazyku VHDL
 V TOP module implementujeme inštanciu logickej funkcie. Prepojuje ostatné moduly s hardvérovými komponentami na doske Nexys A7-50T. 
-(images/schematic.png)       
+![your figure](images/schematic.png)       
 
 <a name="video"></a>
 
